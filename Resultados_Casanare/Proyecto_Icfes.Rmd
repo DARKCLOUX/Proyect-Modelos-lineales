@@ -5,3 +5,8 @@ date: "2025-06-29"
 output: pdf_document
 ---
 
+## DEL HOGAR AL AULA: FACTORES QUE EXPLICAN EL RENDIMIENTO EN MATEMÁTICAS
+
+En el ámbito educativo, la evaluación del rendimiento académico de los estudiantes ha sido objeto de numerosos estudios a nivel nacional e internacional, especialmente en las áreas de ciencias naturales, matemáticas y lenguaje. Diversas investigaciones el género del estudiante pueden influir significativamente en los resultados obtenidos por los alumnos en pruebas estandarizadas.
+
+El presente análisis se enmarca en este contexto y utiliza como fuente la base de datos del Instituto Colombiano para la Evaluación de la Educación (ICFES) correspondiente al segundo semestre del año 2024 2. La muestra analizada se restringe al departamento de Casanare, lo cual permite enfocar el estudio en una región específica del país y observar sus características particulares.
