@@ -19,7 +19,7 @@ library(MASS)
 library(sjPlot)
 library(olsrr)
 
-### ALGUNAS VECES SON CANSINAS
+### para configurar UTF8 por si la base de datos tiene caracteres 
 
 Sys.setlocale("LC_ALL", "Spanish_Spain.utf8")
 
