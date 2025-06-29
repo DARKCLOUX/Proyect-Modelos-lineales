@@ -1,12 +1,21 @@
 ---
-title: "Proyecto_ICFES"
+title: "DEL HOGAR AL AULA: FACTORES QUE EXPLICAN EL RENDIMIENTO EN MATEMÁTICAS"
 author: "WILLIAM DAVID IBICA PREGONERO"
 date: "2025-06-29"
 output: pdf_document
 ---
-
-## DEL HOGAR AL AULA: FACTORES QUE EXPLICAN EL RENDIMIENTO EN MATEMÁTICAS
+## Introducción
 
 En el ámbito educativo, la evaluación del rendimiento académico de los estudiantes ha sido objeto de numerosos estudios a nivel nacional e internacional, especialmente en las áreas de ciencias naturales, matemáticas y lenguaje. Diversas investigaciones el género del estudiante pueden influir significativamente en los resultados obtenidos por los alumnos en pruebas estandarizadas.
 
 El presente análisis se enmarca en este contexto y utiliza como fuente la base de datos del Instituto Colombiano para la Evaluación de la Educación (ICFES) correspondiente al segundo semestre del año 2024 2. La muestra analizada se restringe al departamento de Casanare, lo cual permite enfocar el estudio en una región específica del país y observar sus características particulares.
+
+## Obetivo general
+
+Analizar el efecto del nivel educativo de la madre y del nivel socioeconómico del estudiante sobre el puntaje en matemáticas , controlando la influencia del puntaje en lectura crítica como covariable.
+
+-   Estimar el efecto del nivel educativo de la madre y del nivel socioeconómico sobre el rendimiento en matemáticas, ajustando por el puntaje en lectura crítica.
+
+-   Evaluar si el puntaje en lectura crítica se asocia significativamente con el puntaje en matemáticas, cuando se controlan los efectos del nivel educativo de la madre y el nivel socioeconómico.
+
+-   Determinar si existen diferencias significativas en el puntaje en matemáticas entre los distintos niveles educativos de la madre y niveles socioeconómicos, ajustando por la covariable.
