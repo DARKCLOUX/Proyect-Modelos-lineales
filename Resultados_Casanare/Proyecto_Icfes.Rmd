@@ -10,7 +10,7 @@ En el ámbito educativo, la evaluación del rendimiento académico de los estudi
 
 El presente análisis se enmarca en este contexto y utiliza como fuente la base de datos del Instituto Colombiano para la Evaluación de la Educación (ICFES) correspondiente al segundo semestre del año 2024 2. La muestra analizada se restringe al departamento de Casanare, lo cual permite enfocar el estudio en una región específica del país y observar sus características particulares.
 
-## Obetivo general
+## Objetivo general
 
 Analizar el efecto del nivel educativo de la madre y del nivel socioeconómico del estudiante sobre el puntaje en matemáticas , controlando la influencia del puntaje en lectura crítica como covariable.
 
@@ -19,3 +19,11 @@ Analizar el efecto del nivel educativo de la madre y del nivel socioeconómico d
 -   Evaluar si el puntaje en lectura crítica se asocia significativamente con el puntaje en matemáticas, cuando se controlan los efectos del nivel educativo de la madre y el nivel socioeconómico.
 
 -   Determinar si existen diferencias significativas en el puntaje en matemáticas entre los distintos niveles educativos de la madre y niveles socioeconómicos, ajustando por la covariable.
+
+## Datos
+
+La base de datos utilizada en este estudio proviene del ICFES y corresponde a los resultados de las pruebas estandarizadas aplicadas en el periodo 2024 2. La muestra se limita a un total de 5465 estudiantes del departamento de Casanare (Colombia), y contiene información relevante para el análisis del rendimiento académico en
+matemáticas, así como variables asociadas a características individuales y del entorno familiar del estudiante.
+
+![Tabla_variables](Tabla_variables.JPG)
+
