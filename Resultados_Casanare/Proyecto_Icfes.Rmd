@@ -1,0 +1,7 @@
+---
+title: "Proyecto_ICFES"
+author: "WILLIAM DAVID IBICA PREGONERO"
+date: "2025-06-29"
+output: pdf_document
+---
+
