@@ -159,3 +159,4 @@ Respecto al nivel socioeconómico individual, únicamente la categoría más baj
 knitr::include_graphics("descriptivas.PNG")
 ```
 
+Los resultados descriptivos muestran que tanto el nivel educativo de la madre como el nivel socioeconómico individual del estudiante están relacionados positivamente con el desempeño en lectura crítica. En promedio, los estudiantes cuya madre tiene mayor nivel educativo obtienen mejores puntajes, pasando de 51.76 a 57.37 puntos. De forma similar, a mayor nivel socioeconómico, los puntajes también aumentan, desde 50.55 en el nivel bajo hasta 61.50 en el nivel alto. Estos resultados sugieren que ambos factores están asociados con un mejor rendimiento en lectura crítica.
