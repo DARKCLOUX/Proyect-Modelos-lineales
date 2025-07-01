@@ -49,7 +49,7 @@ Analizar el efecto del nivel educativo de la madre y del nivel socioeconómico d
 La base de datos utilizada en este estudio proviene del ICFES y corresponde a los resultados de las pruebas estandarizadas aplicadas en el periodo $2024-2$. La muestra se limita a un total de 5465 estudiantes del departamento de Casanare (Colombia), y contiene información relevante para el análisis del rendimiento académico en
 matemáticas, así como variables asociadas a características individuales y del entorno familiar del estudiante.
 
-```{r, fig.pos="h", out.width="100%", fig.cap="Tabla de variables", echo=FALSE}
+```{r, fig.pos="h", out.width="70%", fig.cap="Tabla de variables", echo=FALSE}
 knitr::include_graphics("Tabla_variables.PNG")
 ```
 
@@ -137,14 +137,14 @@ Factores (Nivel educativo de la madre nivel socioeconómico del estudiante)
 
 3. Covariable: Puntaje en lectura crítica 
 
-```{r, fig.pos="h", out.width="100%", fig.cap="Medidas descriptivas", echo=FALSE}
+```{r, fig.pos="h", out.width="70%", fig.cap="Medidas descriptivas", echo=FALSE}
 knitr::include_graphics("Características.PNG")
 ```
 
 EL modelo explica el $53.63\%$ de la variabilidad de los datos, esto sugiere un buen porcentaje y se puede observar en el coeficiente de determinación múltiple $𝑅^2(𝑅−𝑐𝑢𝑎𝑑𝑟𝑎d𝑜)$, además, él $𝐹 = 909.86$ es significativo. Esto
 confirma que, en conjunto, las variables independientes utilizadas explican una proporción significativa de la variabilidad observada. Adicional mente, la raíz del error cuadrático medio (Raíz MSE) fue 8.54, l o que sugiere una dispersión moderada de los residuos alrededor de las predicciones del modelo.
 
-```{r, fig.pos="h", out.width="100%", fig.cap="Modelo", echo=FALSE}
+```{r, fig.pos="h", out.width="50%", fig.cap="Modelo", echo=FALSE}
 knitr::include_graphics("Modelo.PNG")
 ```
 
@@ -155,8 +155,74 @@ Respecto al nivel socioeconómico individual, únicamente la categoría más baj
 
 **Estadísticos descriptivos**
 
-```{r, fig.pos="h", out.width="100%", fig.cap="Medidas descriptivas", echo=FALSE}
+```{r, fig.pos="h", out.width="70%", fig.cap="Medidas descriptivas", echo=FALSE}
 knitr::include_graphics("descriptivas.PNG")
 ```
 
 Los resultados descriptivos muestran que tanto el nivel educativo de la madre como el nivel socioeconómico individual del estudiante están relacionados positivamente con el desempeño en lectura crítica. En promedio, los estudiantes cuya madre tiene mayor nivel educativo obtienen mejores puntajes, pasando de 51.76 a 57.37 puntos. De forma similar, a mayor nivel socioeconómico, los puntajes también aumentan, desde 50.55 en el nivel bajo hasta 61.50 en el nivel alto. Estos resultados sugieren que ambos factores están asociados con un mejor rendimiento en lectura crítica.
+
+## Verificación de supuestos 
+
+- **Independencia**
+
+Se valido mediante la prueba de Durbin Watson, ya que como es una muestra grande, las otras
+pruebas podrían, afectar la decisión en el juzgamiento
+
+```{r, fig.pos="h", out.width="55%", fig.cap="Medidas descriptivas", echo=FALSE}
+knitr::include_graphics("Independencia.PNG")
+```
+
+Podemos observar que el p valor es mayor que cualquier nivel de significancia, no se rechaza la hipótesis nula de ausencia de autocorrelación. Por tanto, no hay evidencia estadísticamente significativa de autocorrelación en los residuos del modelo, lo cual indica que se cumple el supuesto de independencia de los errores en la regresión.
+
+- **Relación lineal
+**
+```{r}
+
+```
+
+El gráfico sugiere que la relación entre la covariable (puntaje en lectura crítica) y la variable puntaje en matemáticas es aproximadamente lineal dentro de cada nivel del factor socioeconómico. Por t anto, el supuesto de linealidad para el modelo ANCOVA se considera razonablemente cumplido.
+
+
+- **Homogeneidad**
+```{r, fig.pos="h", out.width="55%", fig.cap="Medidas descriptivas", echo=FALSE}
+knitr::include_graphics("homogeneidad.PNG")
+```
+
+La prueba de homogeneidad de pendientes no fue significativa por el p valor obtenido , lo que indica que la relación entre el covariable puntaje lectura crítica y la variable dependiente punt aje en matemáticas es constante entre los niveles socioeconómicos del estudiante. Por tanto, se cumple el supuesto de homogeneidad de pendientes en el modelo ANCOVA.
+
+```{r, fig.pos="h", out.width="55%", fig.cap="Medidas descriptivas", echo=FALSE}
+knitr::include_graphics("Homo_pendientes.PNG")
+```
+
+- **Homocedasticidad**
+Se valido mediante grafico de residuos vs valores ajustados y la prueba de Breusch Pagan
+
+```{r}
+
+```
+
+El gráfico de escala localización sugiere que los residuos presentan una varianza aproximadamente constante a lo largo de los valores ajustados , esto podría afirmar que el supuesto de homocedasticidad se considera cumplido.
+
+```{r, fig.pos="h", out.width="45%", fig.cap="Medidas descriptivas", echo=FALSE}
+knitr::include_graphics("Homocedasticidad.PNG")
+```
+
+Como el p valor es mayor que cualquier nivel de significancia, no se rechaza la hipótesis nula de homocedasticidad. En consecuencia, se puede asumir que se cumple el supuesto de varianza constante de los errores
+
+- **Normalidad de residuos**
+
+Se examina visualmente a través del gráfico Cuantil-Cuantil (Q-Q plot) y se contrasta estadísticamente mediante la prueba de Kolmogórov Smirnov , dado que la muestra es considerablemente grande , también se realizo un histograma p ara dar una breve observación
+
+```{r}
+
+```
+
+Se observa en el gráfico Q_Q que los residuos están alineados mayoritariamente a la línea referencial teórica , esto indagaría que no hay desviaciones significativas respecto a la normalidad de los residuos. Si bien se aprecia una leve discrepancia en los extremos del gráfico, este comportamiento es común en datos reales y no constituye una irregularidad que comprometa la validez del modelo
+
+```{r, fig.pos="h", out.width="45%", fig.cap="Medidas descriptivas", echo=FALSE}
+knitr::include_graphics("Normalidad.PNG")
+```
+
+Con esta prueba, aunque no tan confiable por el número de datos , se observa que el p valor no es significativo, luego no se rechaza la hipótesis nula, entonces, los residuos siguen una distribución Normal
+
+
