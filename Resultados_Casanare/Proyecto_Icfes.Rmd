@@ -26,6 +26,12 @@ library(lmtest)
 library(MASS)
 library(sjPlot)
 library(olsrr)
+
+homoceda <- readRDS(file = "homoceda.rds")
+Hist_residuales <- readRDS(file = "Hist_residuales.rds")
+Q_Q <- readRDS(file = "Q_Q.rds")
+lineal <- readRDS(file = "lineal.rds")
+
 ```
 
 ## Introducción
@@ -174,13 +180,12 @@ knitr::include_graphics("Independencia.PNG")
 
 Podemos observar que el p valor es mayor que cualquier nivel de significancia, no se rechaza la hipótesis nula de ausencia de autocorrelación. Por tanto, no hay evidencia estadísticamente significativa de autocorrelación en los residuos del modelo, lo cual indica que se cumple el supuesto de independencia de los errores en la regresión.
 
-- **Relación lineal
-**
-```{r}
-
+- **Relación lineal**
+```{r, fig.pos="h", out.width="60%", fig.cap="Medidas descriptivas", echo=FALSE, warning=FALSE, message=FALSE}
+lineal
 ```
 
-El gráfico sugiere que la relación entre la covariable (puntaje en lectura crítica) y la variable puntaje en matemáticas es aproximadamente lineal dentro de cada nivel del factor socioeconómico. Por t anto, el supuesto de linealidad para el modelo ANCOVA se considera razonablemente cumplido.
+El gráfico sugiere que la relación entre la covariable (puntaje en lectura crítica) y la variable puntaje en matemáticas es aproximadamente lineal dentro de cada nivel del factor socioeconómico. Por tanto, el supuesto de linealidad para el modelo ANCOVA se considera razonablemente cumplido.
 
 
 - **Homogeneidad**
@@ -195,15 +200,15 @@ knitr::include_graphics("Homo_pendientes.PNG")
 ```
 
 - **Homocedasticidad**
-Se valido mediante grafico de residuos vs valores ajustados y la prueba de Breusch Pagan
+Se valido mediante gráfico de residuos vs valores ajustados y la prueba de Breusch Pagan
 
-```{r}
-
+```{r, fig.pos="h", out.width="45%", fig.cap="homocedasticidad", echo=FALSE, include=FALSE, message=FALSE}
+homoceda
 ```
 
 El gráfico de escala localización sugiere que los residuos presentan una varianza aproximadamente constante a lo largo de los valores ajustados , esto podría afirmar que el supuesto de homocedasticidad se considera cumplido.
 
-```{r, fig.pos="h", out.width="45%", fig.cap="Medidas descriptivas", echo=FALSE}
+```{r, fig.pos="h", out.width="45%", echo=FALSE}
 knitr::include_graphics("Homocedasticidad.PNG")
 ```
 
@@ -213,16 +218,38 @@ Como el p valor es mayor que cualquier nivel de significancia, no se rechaza la 
 
 Se examina visualmente a través del gráfico Cuantil-Cuantil (Q-Q plot) y se contrasta estadísticamente mediante la prueba de Kolmogórov Smirnov , dado que la muestra es considerablemente grande , también se realizo un histograma p ara dar una breve observación
 
-```{r}
-
+*Histograma*
+```{r,  fig.pos="h", out.width="45%", fig.cap="cuantil_cuantil", warning=FALSE, message=FALSE}
+Q_Q
 ```
+**Histograma**
 
+```{r,  fig.pos="h", out.width="45%", fig.cap="Histograma", warning=FALSE, message=FALSE}
+Hist_residuales
+```
 Se observa en el gráfico Q_Q que los residuos están alineados mayoritariamente a la línea referencial teórica , esto indagaría que no hay desviaciones significativas respecto a la normalidad de los residuos. Si bien se aprecia una leve discrepancia en los extremos del gráfico, este comportamiento es común en datos reales y no constituye una irregularidad que comprometa la validez del modelo
 
 ```{r, fig.pos="h", out.width="45%", fig.cap="Medidas descriptivas", echo=FALSE}
 knitr::include_graphics("Normalidad.PNG")
 ```
 
-Con esta prueba, aunque no tan confiable por el número de datos , se observa que el p valor no es significativo, luego no se rechaza la hipótesis nula, entonces, los residuos siguen una distribución Normal
+Con esta prueba, aunque no tan confiable por el número de datos , se observa que el p valor no es significativo, luego no se rechaza la hipótesis nula, entonces, los residuos siguen una distribución Normal.
+
+## Detención de datos influyentes
+
+```{r, fig.pos="h", out.width="150%", echo=FALSE}
+knitr::include_graphics("DFFIT.PNG")
+```
+
+Los gráficos de diagnóstico revelan que, en general, el modelo de regresión no presenta problemas graves de
+influencia o valores atípicos. El gráfico de DFFITS muestra que la mayoría de las observaciones no tienen un
+impacto significativo en las predicción es. Sin embargo, en el gráfico de Cook’s Distance se identifica una
+observación alrededor del índice 3000 con una influencia destacada. Los gráficos de leverage y residuos
+estandarizados confirman que, aunque la mayoría de los puntos son normales, existen algunas observaciones
+específicas (como las cercanas a los índices 2900 y 4472) que combinan alto leverage y residuos grandes, indicando
+que podrían estar afectando el ajuste del modelo. Se recomienda revisar a futuro estas observaciones influyentes
+para a segurar la robustez del modelo.
+Se realizo la eliminación de datos atípicos, pero no hubo mejora en la variabilidad de explicación del modelo, el
+cambio fue mínimo.
 
 
