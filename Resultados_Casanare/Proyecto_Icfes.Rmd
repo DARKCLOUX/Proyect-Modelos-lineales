@@ -249,7 +249,39 @@ estandarizados confirman que, aunque la mayoría de los puntos son normales, exi
 específicas (como las cercanas a los índices 2900 y 4472) que combinan alto leverage y residuos grandes, indicando
 que podrían estar afectando el ajuste del modelo. Se recomienda revisar a futuro estas observaciones influyentes
 para a segurar la robustez del modelo.
-Se realizo la eliminación de datos atípicos, pero no hubo mejora en la variabilidad de explicación del modelo, el
-cambio fue mínimo.
+
+## Eliminación 
+
+Para asegurar la validez del modelo ANCOVA y mejorar la precisión de las estimaciones, se realizó una depuración del conjunto de datos mediante la identificación y eliminación de observaciones atípicas multivariantes.
+
+La detección se basó en el cálculo de la distancia de Mahalanobis aplicada a las variables numéricas involucradas en el modelo: punt_matematicas y punt_lectura_critica. Se estableció como umbral de corte el percentil 99 de la distribución Chi-cuadrado con 2 grados de libertad, eliminando aquellas observaciones que superaban dicho límite.
+
+Como resultado, se obtuvo un conjunto de datos más robusto, libre de valores extremos que pudieran influir de forma indebida en la interpretación de los efectos de los factores educ_madre_ord y estu_nse_individual sobre el rendimiento en matemáticas, controlando por el puntaje en lectura crítica.
+
+```{r, fig.pos="h", out.width="60%", echo=FALSE}
+knitr::include_graphics("modelo_fin.PNG")
+```
+
+El presente estudio implementó un modelo de ANCOVA de dos vías para analizar los determinantes del rendimiento en matemáticas en estudiantes, considerando como variables predictoras: (1) el nivel educativo de la madre (variable ordinal con tres categorías), (2) el nivel socioeconómico del estudiante (variable ordinal con cuatro categorías), y (3) el puntaje en lectura crítica como covariable continua. Antes del ajuste del modelo, se eliminaron observaciones atípicas multivariantes mediante el cálculo de la distancia de Mahalanobis sobre las variables numéricas implicadas, con el fin de mejorar la robustez del análisis y reducir la influencia de valores extremos.
+
+El modelo final, libre de datos atípicos, fue validado mediante el cumplimiento de los supuestos estadísticos (normalidad de residuos, homocedasticidad y linealidad), mostrando un buen ajuste para el análisis inferencial.
+
+Los resultados revelaron patrones consistentes con la literatura educativa. La covariable lectura crítica mostró el efecto más fuerte y estadísticamente significativo, con un coeficiente de 0.877 (𝑝 < 0.0001), indicando que, por cada punto adicional en dicha prueba, se espera un aumento promedio de 0.877 puntos en el rendimiento matemático, manteniendo constantes los demás factores. Este resultado reafirma la conexión entre habilidades lingüísticas y desempeño en matemáticas.
+
+Respecto al nivel educativo de la madre, los estudiantes cuyas madres tenían educación básica incompleta (nivel 1) obtuvieron, en promedio, 1.21 puntos menos que aquellos con madres de educación superior (nivel de referencia), siendo esta diferencia estadísticamente significativa (𝑝 = 0.0005). La diferencia para educación básica completa (nivel 2) fue menor y no significativa (-0.44 puntos; 𝑝 = 0.1609). Este patrón sugiere que el capital educativo del hogar sigue siendo un determinante relevante del rendimiento, especialmente cuando se trata de niveles muy bajos de escolarización.
+
+En cuanto al nivel socioeconómico individual, el grupo estrato bajo (nivel 1) presentó una diferencia negativa significativa de 1.48 puntos respecto al estrato alto (𝑝 = 0.0123), mientras que los niveles 2 y 3 no mostraron diferencias estadísticamente significativas. Esto sugiere que el mayor impacto negativo se concentra en los estudiantes en condiciones de vulnerabilidad extrema, mientras que las diferencias entre niveles medios y altos tienden a diluirse.
+
+## Conclusiones 
+
+La competencia en lectura crítica continúa siendo el predictor más fuerte del rendimiento en matemáticas, lo que respalda enfoques pedagógicos integrados que fortalezcan simultáneamente las habilidades verbales y lógico-matemáticas.
+
+- El efecto del nivel educativo de la madre, aunque atenuado tras eliminar los valores extremos, se mantiene como un factor de peso, especialmente en los niveles más bajos. Esto refuerza la necesidad de políticas educativas intergeneracionales que favorezcan el acceso a la educación para madres con baja escolaridad.
+
+- La desventaja significativa observada en el estrato socioeconómico bajo pone en evidencia la persistencia de las inequidades estructurales. Este hallazgo justifica la implementación de estrategias de acompañamiento educativo y recursos dirigidos a los estudiantes en mayor riesgo de exclusión.
+
+El modelo ajustado sin atípicos ofrece una visión más precisa del fenómeno y mejora la confiabilidad de las inferencias. Se sugiere ampliar el modelo en futuros estudios incorporando variables contextuales adicionales (como calidad docente, infraestructura escolar o apoyo familiar), así como aplicar modelos longitudinales que permitan evaluar cómo evolucionan estos efectos a lo largo del tiempo educativo.
+
+
 
 
