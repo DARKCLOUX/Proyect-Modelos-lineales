@@ -71,7 +71,7 @@ $$Y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \gamma X_k + \epsilo
 Explicación de Términos
 
 | Símbolo | Descripción |
-|----|----|
+|------------------------------------|------------------------------------|
 | $Y_{ijk}$ | Variable respuesta (ej: puntaje en matemáticas). |
 | $\mu$ | Media global del modelo. |
 | $\alpha_i$ | Efecto del $i$-ésimo nivel del **primer factor categórico** (ej: Grupo). |
@@ -258,4 +258,10 @@ El modelo ajustado sin atípicos ofrece una visión más precisa del fenómeno y
 
 ## REFERENCIAS
 
-<https://www.icfes.gov.co/wp> content/uploads/2024/11/Edicion 4 boletin saber al detalle --.pdf <https://bookdown.org/j_morales/librostat/ancova.html> Instituto Colombiano para la Evaluación de la Educación Icfes. (marzo de 2024). DataIcfes: Repositorio de Datos Abiertos del Icfes. 04.Saber11 [Conjunto de datos]. Recuperado de <https://bitly.ws/3f3YC> <https://statistics.laerd.com/spss> tutorials/two way ancova using spss statistics .php <https://bookdown.org/j_morales/weblinmod/04ML> ANOVA ANCOVA.html
+-   <https://www.icfes.gov.co/wp> content/uploads/2024/11/Edicion 4 boletin saber al detalle -
+
+-   -.pdf <https://bookdown.org/j_morales/librostat/ancova.html> Instituto Colombiano para la Evaluación de la Educación Icfes. (marzo de 2024). DataIcfes: Repositorio de Datos Abiertos del Icfes. 04.Saber11 [Conjunto de datos]. Recuperado de <https://bitly.ws/3f3YC>
+
+-   <https://statistics.laerd.com/spss> tutorials/two way ancova using spss statistics .php
+
+-   <https://bookdown.org/j_morales/weblinmod/04ML> ANOVA ANCOVA.html
