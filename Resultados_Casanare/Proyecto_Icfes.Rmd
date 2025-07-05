@@ -52,112 +52,91 @@ Analizar el efecto del nivel educativo de la madre y del nivel socioeconómico d
 
 ## Datos
 
-La base de datos utilizada en este estudio proviene del ICFES y corresponde a los resultados de las pruebas estandarizadas aplicadas en el periodo $2024-2$. La muestra se limita a un total de 5465 estudiantes del departamento de Casanare (Colombia), y contiene información relevante para el análisis del rendimiento académico en
-matemáticas, así como variables asociadas a características individuales y del entorno familiar del estudiante.
+La base de datos utilizada en este estudio proviene del ICFES y corresponde a los resultados de las pruebas estandarizadas aplicadas en el periodo $2024-2$. La muestra se limita a un total de 5465 estudiantes del departamento de Casanare (Colombia), y contiene información relevante para el análisis del rendimiento académico en matemáticas, así como variables asociadas a características individuales y del entorno familiar del estudiante.
 
 ```{r, fig.pos="h", out.width="70%", fig.cap="Tabla de variables", echo=FALSE}
 knitr::include_graphics("Tabla_variables.PNG")
 ```
 
-El procedimiento estadístico utilizado para analizar el efecto de dos factores categóricos y una covariable continua
-sobre el desempeño académico en matemáticas de estudiantes de educación media. Para tal fin, se implementó un
-modelo de análisis de covarianza, que permite comparar las medias ajustadas del puntaje en matemáticas entre
-grupos definidos por el nivel educativo de la madre y el nivel socioeconómico del estudiante, controlando el efecto
-del puntaje en lectura crítica como covariable.
+El procedimiento estadístico utilizado para analizar el efecto de dos factores categóricos y una covariable continua sobre el desempeño académico en matemáticas de estudiantes de educación media. Para tal fin, se implementó un modelo de análisis de covarianza, que permite comparar las medias ajustadas del puntaje en matemáticas entre grupos definidos por el nivel educativo de la madre y el nivel socioeconómico del estudiante, controlando el efecto del puntaje en lectura crítica como covariable.
 
-Este diseño permite evaluar si existen diferencias significativas en el rendimiento en matemáticas atribuibles a las
-condiciones socioculturales y económicas del entorno familiar, una vez que se ha ajustado estadísticamente el efecto
-del desempeño en lectura crítica.
+Este diseño permite evaluar si existen diferencias significativas en el rendimiento en matemáticas atribuibles a las condiciones socioculturales y económicas del entorno familiar, una vez que se ha ajustado estadísticamente el efecto del desempeño en lectura crítica.
 
 ## Métodos
 
 La formulación general del modelo se expresa de la siguiente manera:
 
-\[Y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \gamma X_k + \epsilon_{ijk}\]
+$$Y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \gamma X_k + \epsilon_{ijk}$$
 
 Explicación de Términos
 
-| Símbolo          | Descripción                                                                 |
-|------------------|-----------------------------------------------------------------------------|
-| $Y_{ijk}$        | Variable respuesta (ej: puntaje en matemáticas).                           |
-| $\mu$            | Media global del modelo.                                                   |
-| $\alpha_i$       | Efecto del $i$-ésimo nivel del **primer factor categórico** (ej: Grupo).  |
-| $\beta_j$        | Efecto del $j$-ésimo nivel del **segundo factor categórico** (ej: Tratamiento). |
-| $(\alpha\beta)_{ij}$ | Interacción entre los dos factores.                                  |
-| $\gamma X_k$     | Efecto de la **covariable continua** $X_k$ (ej: Edad).                     |
-| $\epsilon_{ijk}$ | Error aleatorio $\sim N(0, \sigma^2)$.     
+| Símbolo | Descripción |
+|----|----|
+| $Y_{ijk}$ | Variable respuesta (ej: puntaje en matemáticas). |
+| $\mu$ | Media global del modelo. |
+| $\alpha_i$ | Efecto del $i$-ésimo nivel del **primer factor categórico** (ej: Grupo). |
+| $\beta_j$ | Efecto del $j$-ésimo nivel del **segundo factor categórico** (ej: Tratamiento). |
+| $(\alpha\beta)_{ij}$ | Interacción entre los dos factores. |
+| $\gamma X_k$ | Efecto de la **covariable continua** $X_k$ (ej: Edad). |
+| $\epsilon_{ijk}$ | Error aleatorio $\sim N(0, \sigma^2)$. |
 
 *Supuestos del Modelo ANCOVA*
 
-Para que las inferencias del modelo sean válidas y robustas , deben cumplirse los
-siguientes supuestos estadísticos:
+Para que las inferencias del modelo sean válidas y robustas , deben cumplirse los siguientes supuestos estadísticos:
 
-- Independencia de las observaciones: los estudiantes son unidades estadísticas independientes.
+-   Independencia de las observaciones: los estudiantes son unidades estadísticas independientes.
 
-- Relación lineal entre la covariable y la variable dependiente: se asume que existe una relación lineal entre
-el puntaje en lectura crítica y el puntaje en matemáticas.
+-   Relación lineal entre la covariable y la variable dependiente: se asume que existe una relación lineal entre el puntaje en lectura crítica y el puntaje en matemáticas.
 
-- Homogeneidad de pendientes: la relación entre la covariable y la variable respuesta es constante en todos
-los niveles de los factores.
+-   Homogeneidad de pendientes: la relación entre la covariable y la variable respuesta es constante en todos los niveles de los factores.
 
-- Homocedasticidad: se espera varianza constante de los errores en los distintos grupos.
+-   Homocedasticidad: se espera varianza constante de los errores en los distintos grupos.
 
-- Normalidad de los errores residuales: los residuos del modelo deben seguir una distribución normal.
+-   Normalidad de los errores residuales: los residuos del modelo deben seguir una distribución normal.
 
 # Análisis Diagnóstico del Modelo
 
-Ante la diversidad de variables disponibles como posibles predictores, se implementó un
-a estrategia metodológica para identificar el conjunto óptimo de variables. Este enfoque buscará equilibrar la capacidad predictiva del modelo más simple y con el menor número de supuestos (principio de parsimonia), garantizando así un modelo robusto e interpretable.
+Ante la diversidad de variables disponibles como posibles predictores, se implementó un a estrategia metodológica para identificar el conjunto óptimo de variables. Este enfoque buscará equilibrar la capacidad predictiva del modelo más simple y con el menor número de supuestos (principio de parsimonia), garantizando así un modelo robusto e interpretable.
 
-Una vez ajustado el modelo se procede a realizar un conjunto de análisis diagnósticos con el fin de evaluar su
-validez estadística y asegurar la fiabilidad de las inferencias.
-# Software
-- SAS (versión 9.4): utilizado para el preprocesamiento de datos, recodificación de variables, análisis
-descriptivo y ejecución del modelo ANCOVA.
+Una vez ajustado el modelo se procede a realizar un conjunto de análisis diagnósticos con el fin de evaluar su validez estadística y asegurar la fiabilidad de las inferencias. \# Software - SAS (versión 9.4): utilizado para el preprocesamiento de datos, recodificación de variables, análisis descriptivo y ejecución del modelo ANCOVA.
 
-- RStudio (versión 2024.03.0): se empleó de forma complementaria para la verificación cruzada de
-resultados mediante el uso de los paquetes car (Anova Type III), ggplot2 (visualización de efectos
-marginales) y emmeans (estimación de medi as marginales ajustadas).
+-   RStudio (versión 2024.03.0): se empleó de forma complementaria para la verificación cruzada de resultados mediante el uso de los paquetes car (Anova Type III), ggplot2 (visualización de efectos marginales) y emmeans (estimación de medi as marginales ajustadas).
 
 ## Resultados y discusión
 
-Los resultados finales desde los distintos métodos exploratorios realizados para la obtención del modelo más simple
-fueron Modelo ANCOVA a dos vías:
+Los resultados finales desde los distintos métodos exploratorios realizados para la obtención del modelo más simple fueron Modelo ANCOVA a dos vías:
 
 **Componentes aleatorios**
 
-\[ Y_{ijk} \sim Normal(\mu_{ijk}, \sigma^2) \]
+$$ Y_{ijk} \sim Normal(\mu_{ijk}, \sigma^2) $$
 
-\[ \epsilon_{ijk} \sim Normal(\mu_{ijk}, \sigma^2) \]
+$$ \epsilon_{ijk} \sim Normal(\mu_{ijk}, \sigma^2) $$
 
-\[ Var(\epsilon_{ij}) = \sigma^2, \ \forall_{i,j} \]
+$$ Var(\epsilon_{ij}) = \sigma^2, \ \forall_{i,j} $$
 
 **Descripción del modelo**
 
-- Variables finales:
+-   Variables finales:
 
-1. Variable respuesta: Puntaje en matemáticas
+1.  Variable respuesta: Puntaje en matemáticas
 
-2. Variables Explicativas: estas están en dos categorías
-Factores (Nivel educativo de la madre nivel socioeconómico del estudiante)
+2.  Variables Explicativas: estas están en dos categorías Factores (Nivel educativo de la madre nivel socioeconómico del estudiante)
 
-3. Covariable: Puntaje en lectura crítica 
+3.  Covariable: Puntaje en lectura crítica
 
 ```{r, fig.pos="h", out.width="70%", fig.cap="Medidas descriptivas", echo=FALSE}
 knitr::include_graphics("Características.PNG")
 ```
 
-EL modelo explica el $53.63\%$ de la variabilidad de los datos, esto sugiere un buen porcentaje y se puede observar en el coeficiente de determinación múltiple $𝑅^2(𝑅−𝑐𝑢𝑎𝑑𝑟𝑎d𝑜)$, además, él $𝐹 = 909.86$ es significativo. Esto
-confirma que, en conjunto, las variables independientes utilizadas explican una proporción significativa de la variabilidad observada. Adicional mente, la raíz del error cuadrático medio (Raíz MSE) fue 8.54, l o que sugiere una dispersión moderada de los residuos alrededor de las predicciones del modelo.
+EL modelo explica el $53.63\%$ de la variabilidad de los datos, esto sugiere un buen porcentaje y se puede observar en el coeficiente de determinación múltiple $𝑅^2(𝑅−𝑐𝑢𝑎𝑑𝑟𝑎d𝑜)$, además, él $𝐹 = 909.86$ es significativo. Esto confirma que, en conjunto, las variables independientes utilizadas explican una proporción significativa de la variabilidad observada. Adicional mente, la raíz del error cuadrático medio (Raíz MSE) fue 8.54, l o que sugiere una dispersión moderada de los residuos alrededor de las predicciones del modelo.
 
 ```{r, fig.pos="h", out.width="50%", fig.cap="Modelo", echo=FALSE}
 knitr::include_graphics("Modelo.PNG")
 ```
 
-El análisis de los coeficientes estimados del modelo general lineal revela efectos significativos de las variables explicativas sobre el puntaje en matemática s, controlando por el nivel socioeconómico individual y el puntaje en lectura crítica. En relación con el nivel educativo de la madre (educ_madre_ord), se observó que los estudiantes cuyas madres poseen un nivel educativo bajo presentan, en promedio, una disminución de 1.65 puntos en el puntaje
-de matemáticas en comparación con aquellos cuya madre tiene un nivel educativo alto, diferencia que resultó altamente significativa **(p < 0.0001)**. Asimismo, los estudiantes del nivel intermedio evidencian una disminución promedio de 0.71 puntos respecto al nivel alto, también estadísticamente significativa **(p = 0.0359)**.
+El análisis de los coeficientes estimados del modelo general lineal revela efectos significativos de las variables explicativas sobre el puntaje en matemática s, controlando por el nivel socioeconómico individual y el puntaje en lectura crítica. En relación con el nivel educativo de la madre (educ_madre_ord), se observó que los estudiantes cuyas madres poseen un nivel educativo bajo presentan, en promedio, una disminución de 1.65 puntos en el puntaje de matemáticas en comparación con aquellos cuya madre tiene un nivel educativo alto, diferencia que resultó altamente significativa **(p \< 0.0001)**. Asimismo, los estudiantes del nivel intermedio evidencian una disminución promedio de 0.71 puntos respecto al nivel alto, también estadísticamente significativa **(p = 0.0359)**.
 
-Respecto al nivel socioeconómico individual, únicamente la categoría más baja mostró una diferencia significativa. Los estudiantes clasificados en el nivel socioeconómico obtuvieron en promedio 1.46 puntos menos que aquellos pertenecientes al nivel alto (categoría de referencia), con un valor p de 0.0223. Las demás categorías socioeconómicas no mostraron efectos estadísticamente significativos en comparación con el nivel alto. Por su parte, la covariable punt_lectura_critica presentó un coeficiente positivo altamente significativo (β = 0.8826; Por su parte, la covariable punt_lectura_critica presentó un coeficiente positivo altamente significativo (β = 0.8826; p < 0.0001), lo cual indica que, manteniendo constantes los demás factores, un incremento dep < 0.0001), lo cual indica que, manteniendo constantes los demás factores, un incremento de un punto en el puntaje un punto en el puntaje de lectura crítica se asocia con un aumento promedio de 0.88 puntos en el puntaje de matemáticas. Este hallazgo de lectura crítica se asocia con un aumento promedio de 0.88 puntos en el puntaje de matemáticas. Este hallazgo resalta la influencia directa del rendimiento en lectura crítica sobre el desempeño en matemáticas, reforzando su resalta la influencia directa del rendimiento en lectura crítica sobre el desempeño en matemáticas, reforzando su inclusión como covariable relevante en el modelo.
+Respecto al nivel socioeconómico individual, únicamente la categoría más baja mostró una diferencia significativa. Los estudiantes clasificados en el nivel socioeconómico obtuvieron en promedio 1.46 puntos menos que aquellos pertenecientes al nivel alto (categoría de referencia), con un valor p de 0.0223. Las demás categorías socioeconómicas no mostraron efectos estadísticamente significativos en comparación con el nivel alto. Por su parte, la covariable punt_lectura_critica presentó un coeficiente positivo altamente significativo (β = 0.8826; Por su parte, la covariable punt_lectura_critica presentó un coeficiente positivo altamente significativo (β = 0.8826; p \< 0.0001), lo cual indica que, manteniendo constantes los demás factores, un incremento dep \< 0.0001), lo cual indica que, manteniendo constantes los demás factores, un incremento de un punto en el puntaje un punto en el puntaje de lectura crítica se asocia con un aumento promedio de 0.88 puntos en el puntaje de matemáticas. Este hallazgo de lectura crítica se asocia con un aumento promedio de 0.88 puntos en el puntaje de matemáticas. Este hallazgo resalta la influencia directa del rendimiento en lectura crítica sobre el desempeño en matemáticas, reforzando su resalta la influencia directa del rendimiento en lectura crítica sobre el desempeño en matemáticas, reforzando su inclusión como covariable relevante en el modelo.
 
 **Estadísticos descriptivos**
 
@@ -167,12 +146,11 @@ knitr::include_graphics("descriptivas.PNG")
 
 Los resultados descriptivos muestran que tanto el nivel educativo de la madre como el nivel socioeconómico individual del estudiante están relacionados positivamente con el desempeño en lectura crítica. En promedio, los estudiantes cuya madre tiene mayor nivel educativo obtienen mejores puntajes, pasando de 51.76 a 57.37 puntos. De forma similar, a mayor nivel socioeconómico, los puntajes también aumentan, desde 50.55 en el nivel bajo hasta 61.50 en el nivel alto. Estos resultados sugieren que ambos factores están asociados con un mejor rendimiento en lectura crítica.
 
-## Verificación de supuestos 
+## Verificación de supuestos
 
-- **Independencia**
+-   **Independencia**
 
-Se valido mediante la prueba de Durbin Watson, ya que como es una muestra grande, las otras
-pruebas podrían, afectar la decisión en el juzgamiento
+Se valido mediante la prueba de Durbin Watson, ya que como es una muestra grande, las otras pruebas podrían, afectar la decisión en el juzgamiento
 
 ```{r, fig.pos="h", out.width="55%", fig.cap="Medidas descriptivas", echo=FALSE}
 knitr::include_graphics("Independencia.PNG")
@@ -180,15 +158,16 @@ knitr::include_graphics("Independencia.PNG")
 
 Podemos observar que el p valor es mayor que cualquier nivel de significancia, no se rechaza la hipótesis nula de ausencia de autocorrelación. Por tanto, no hay evidencia estadísticamente significativa de autocorrelación en los residuos del modelo, lo cual indica que se cumple el supuesto de independencia de los errores en la regresión.
 
-- **Relación lineal**
+-   **Relación lineal**
+
 ```{r, fig.pos="h", out.width="60%", fig.cap="Medidas descriptivas", echo=FALSE, warning=FALSE, message=FALSE}
 lineal
 ```
 
 El gráfico sugiere que la relación entre la covariable (puntaje en lectura crítica) y la variable puntaje en matemáticas es aproximadamente lineal dentro de cada nivel del factor socioeconómico. Por tanto, el supuesto de linealidad para el modelo ANCOVA se considera razonablemente cumplido.
 
+-   **Homogeneidad**
 
-- **Homogeneidad**
 ```{r, fig.pos="h", out.width="55%", fig.cap="Medidas descriptivas", echo=FALSE}
 knitr::include_graphics("homogeneidad.PNG")
 ```
@@ -199,8 +178,7 @@ La prueba de homogeneidad de pendientes no fue significativa por el p valor obte
 knitr::include_graphics("Homo_pendientes.PNG")
 ```
 
-- **Homocedasticidad**
-Se valido mediante gráfico de residuos vs valores ajustados y la prueba de Breusch Pagan
+-   **Homocedasticidad** Se valido mediante gráfico de residuos vs valores ajustados y la prueba de Breusch Pagan
 
 ```{r, fig.pos="h", out.width="45%", fig.cap="homocedasticidad", echo=FALSE, include=FALSE, message=FALSE}
 homoceda
@@ -214,19 +192,22 @@ knitr::include_graphics("Homocedasticidad.PNG")
 
 Como el p valor es mayor que cualquier nivel de significancia, no se rechaza la hipótesis nula de homocedasticidad. En consecuencia, se puede asumir que se cumple el supuesto de varianza constante de los errores
 
-- **Normalidad de residuos**
+-   **Normalidad de residuos**
 
 Se examina visualmente a través del gráfico Cuantil-Cuantil (Q-Q plot) y se contrasta estadísticamente mediante la prueba de Kolmogórov Smirnov , dado que la muestra es considerablemente grande , también se realizo un histograma p ara dar una breve observación
 
 *Histograma*
+
 ```{r,  fig.pos="h", out.width="45%", fig.cap="cuantil_cuantil", warning=FALSE, message=FALSE}
 Q_Q
 ```
+
 **Histograma**
 
 ```{r,  fig.pos="h", out.width="45%", fig.cap="Histograma", warning=FALSE, message=FALSE}
 Hist_residuales
 ```
+
 Se observa en el gráfico Q_Q que los residuos están alineados mayoritariamente a la línea referencial teórica , esto indagaría que no hay desviaciones significativas respecto a la normalidad de los residuos. Si bien se aprecia una leve discrepancia en los extremos del gráfico, este comportamiento es común en datos reales y no constituye una irregularidad que comprometa la validez del modelo
 
 ```{r, fig.pos="h", out.width="45%", fig.cap="Medidas descriptivas", echo=FALSE}
@@ -241,16 +222,9 @@ Con esta prueba, aunque no tan confiable por el número de datos , se observa qu
 knitr::include_graphics("DFFIT.PNG")
 ```
 
-Los gráficos de diagnóstico revelan que, en general, el modelo de regresión no presenta problemas graves de
-influencia o valores atípicos. El gráfico de DFFITS muestra que la mayoría de las observaciones no tienen un
-impacto significativo en las predicción es. Sin embargo, en el gráfico de Cook’s Distance se identifica una
-observación alrededor del índice 3000 con una influencia destacada. Los gráficos de leverage y residuos
-estandarizados confirman que, aunque la mayoría de los puntos son normales, existen algunas observaciones
-específicas (como las cercanas a los índices 2900 y 4472) que combinan alto leverage y residuos grandes, indicando
-que podrían estar afectando el ajuste del modelo. Se recomienda revisar a futuro estas observaciones influyentes
-para a segurar la robustez del modelo.
+Los gráficos de diagnóstico revelan que, en general, el modelo de regresión no presenta problemas graves de influencia o valores atípicos. El gráfico de DFFITS muestra que la mayoría de las observaciones no tienen un impacto significativo en las predicción es. Sin embargo, en el gráfico de Cook’s Distance se identifica una observación alrededor del índice 3000 con una influencia destacada. Los gráficos de leverage y residuos estandarizados confirman que, aunque la mayoría de los puntos son normales, existen algunas observaciones específicas (como las cercanas a los índices 2900 y 4472) que combinan alto leverage y residuos grandes, indicando que podrían estar afectando el ajuste del modelo. Se recomienda revisar a futuro estas observaciones influyentes para a segurar la robustez del modelo.
 
-## Eliminación 
+## Eliminación
 
 Para asegurar la validez del modelo ANCOVA y mejorar la precisión de las estimaciones, se realizó una depuración del conjunto de datos mediante la identificación y eliminación de observaciones atípicas multivariantes.
 
@@ -266,35 +240,22 @@ El presente estudio implementó un modelo de ANCOVA de dos vías para analizar l
 
 El modelo final, libre de datos atípicos, fue validado mediante el cumplimiento de los supuestos estadísticos (normalidad de residuos, homocedasticidad y linealidad), mostrando un buen ajuste para el análisis inferencial.
 
-Los resultados revelaron patrones consistentes con la literatura educativa. La covariable lectura crítica mostró el efecto más fuerte y estadísticamente significativo, con un coeficiente de 0.877 (𝑝 < 0.0001), indicando que, por cada punto adicional en dicha prueba, se espera un aumento promedio de 0.877 puntos en el rendimiento matemático, manteniendo constantes los demás factores. Este resultado reafirma la conexión entre habilidades lingüísticas y desempeño en matemáticas.
+Los resultados revelaron patrones consistentes con la literatura educativa. La covariable lectura crítica mostró el efecto más fuerte y estadísticamente significativo, con un coeficiente de 0.877 (𝑝 \< 0.0001), indicando que, por cada punto adicional en dicha prueba, se espera un aumento promedio de 0.877 puntos en el rendimiento matemático, manteniendo constantes los demás factores. Este resultado reafirma la conexión entre habilidades lingüísticas y desempeño en matemáticas.
 
 Respecto al nivel educativo de la madre, los estudiantes cuyas madres tenían educación básica incompleta (nivel 1) obtuvieron, en promedio, 1.21 puntos menos que aquellos con madres de educación superior (nivel de referencia), siendo esta diferencia estadísticamente significativa (𝑝 = 0.0005). La diferencia para educación básica completa (nivel 2) fue menor y no significativa (-0.44 puntos; 𝑝 = 0.1609). Este patrón sugiere que el capital educativo del hogar sigue siendo un determinante relevante del rendimiento, especialmente cuando se trata de niveles muy bajos de escolarización.
 
 En cuanto al nivel socioeconómico individual, el grupo estrato bajo (nivel 1) presentó una diferencia negativa significativa de 1.48 puntos respecto al estrato alto (𝑝 = 0.0123), mientras que los niveles 2 y 3 no mostraron diferencias estadísticamente significativas. Esto sugiere que el mayor impacto negativo se concentra en los estudiantes en condiciones de vulnerabilidad extrema, mientras que las diferencias entre niveles medios y altos tienden a diluirse.
 
-## Conclusiones 
+## Conclusiones
 
 La competencia en lectura crítica continúa siendo el predictor más fuerte del rendimiento en matemáticas, lo que respalda enfoques pedagógicos integrados que fortalezcan simultáneamente las habilidades verbales y lógico-matemáticas.
 
-- El efecto del nivel educativo de la madre, aunque atenuado tras eliminar los valores extremos, se mantiene como un factor de peso, especialmente en los niveles más bajos. Esto refuerza la necesidad de políticas educativas intergeneracionales que favorezcan el acceso a la educación para madres con baja escolaridad.
+-   El efecto del nivel educativo de la madre, aunque atenuado tras eliminar los valores extremos, se mantiene como un factor de peso, especialmente en los niveles más bajos. Esto refuerza la necesidad de políticas educativas intergeneracionales que favorezcan el acceso a la educación para madres con baja escolaridad.
 
-- La desventaja significativa observada en el estrato socioeconómico bajo pone en evidencia la persistencia de las inequidades estructurales. Este hallazgo justifica la implementación de estrategias de acompañamiento educativo y recursos dirigidos a los estudiantes en mayor riesgo de exclusión.
+-   La desventaja significativa observada en el estrato socioeconómico bajo pone en evidencia la persistencia de las inequidades estructurales. Este hallazgo justifica la implementación de estrategias de acompañamiento educativo y recursos dirigidos a los estudiantes en mayor riesgo de exclusión.
 
 El modelo ajustado sin atípicos ofrece una visión más precisa del fenómeno y mejora la confiabilidad de las inferencias. Se sugiere ampliar el modelo en futuros estudios incorporando variables contextuales adicionales (como calidad docente, infraestructura escolar o apoyo familiar), así como aplicar modelos longitudinales que permitan evaluar cómo evolucionan estos efectos a lo largo del tiempo educativo.
 
-## REFERENCIAS 
+## REFERENCIAS
 
-https://www.icfes.gov.co/wp
-content/uploads/2024/11/Edicion 4 boletin saber al detalle --.pdf
-https://bookdown.org/j_morales/librostat/ancova.html
-Instituto Colombiano para la Evaluación de la Educación
-Icfes. (marzo de 2024). DataIcfes: Repositorio de Datos
-Abiertos del Icfes. 04.Saber11 [Conjunto de datos]. Recuperado de
-https://bitly.ws/3f3YC
-https://statistics.laerd.com/spss
-tutorials/two way ancova using spss statistics .php
-https://bookdown.org/j_morales/weblinmod/04ML
-ANOVA ANCOVA.html
-
-
-
+<https://www.icfes.gov.co/wp> content/uploads/2024/11/Edicion 4 boletin saber al detalle --.pdf <https://bookdown.org/j_morales/librostat/ancova.html> Instituto Colombiano para la Evaluación de la Educación Icfes. (marzo de 2024). DataIcfes: Repositorio de Datos Abiertos del Icfes. 04.Saber11 [Conjunto de datos]. Recuperado de <https://bitly.ws/3f3YC> <https://statistics.laerd.com/spss> tutorials/two way ancova using spss statistics .php <https://bookdown.org/j_morales/weblinmod/04ML> ANOVA ANCOVA.html
