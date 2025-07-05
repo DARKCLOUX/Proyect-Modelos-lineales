@@ -263,5 +263,5 @@ El modelo ajustado sin atípicos ofrece una visión más precisa del fenómeno y
 -   -.pdf <https://bookdown.org/j_morales/librostat/ancova.html> Instituto Colombiano para la Evaluación de la Educación Icfes. (marzo de 2024). DataIcfes: Repositorio de Datos Abiertos del Icfes. 04.Saber11 [Conjunto de datos]. Recuperado de <https://bitly.ws/3f3YC>
 
 -   <https://statistics.laerd.com/spss> tutorials/two way ancova using spss statistics .php
-
+sadsadasdasdasdas
 -   <https://bookdown.org/j_morales/weblinmod/04ML> ANOVA ANCOVA.html
